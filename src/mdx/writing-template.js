@@ -1,7 +1,6 @@
 import { graphql } from 'gatsby'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import React from 'react'
-import { Layout } from '../components/layout'
 import { Seo } from '../components/seo'
 
 const WritingTemplate = (props) => {
@@ -16,7 +15,7 @@ const WritingTemplate = (props) => {
   } = props
 
   return (
-    <Layout>
+    <>
       <Seo title={`${subtitle ? `${subtitle} ` : ''}${title}`} />
       <header>
         <h2>{subtitle}</h2>
@@ -24,7 +23,7 @@ const WritingTemplate = (props) => {
         <p>{description}</p>
       </header>
       <MDXRenderer>{props.data.mdx.body}</MDXRenderer>
-    </Layout>
+    </>
   )
 }
 

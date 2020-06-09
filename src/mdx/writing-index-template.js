@@ -1,6 +1,5 @@
 import { graphql, Link } from 'gatsby'
 import React from 'react'
-import { Layout } from '../components/layout'
 import { Seo } from '../components/seo'
 
 const WritingIndexTemplate = (props) => {
@@ -17,7 +16,7 @@ const WritingIndexTemplate = (props) => {
   } = props
 
   return (
-    <Layout>
+    <>
       <Seo title="Writing" />
       <h1>Writing</h1>
       <ul>
@@ -38,7 +37,7 @@ const WritingIndexTemplate = (props) => {
           }
         )}
       </ul>
-    </Layout>
+    </>
   )
 }
 

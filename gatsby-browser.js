@@ -1,7 +1,7 @@
-/**
- * Implement Gatsby's Browser APIs in this file.
- *
- * See: https://www.gatsbyjs.org/docs/browser-apis/
- */
+import React from 'react'
+import { Layout } from './src/components/layout'
 
-// You can delete this file if you're not using it
+// Wrap with component that won’t get unmounted on page changes.
+export const wrapRootElement = ({ element }) => {
+  return <Layout>{element}</Layout>
+}
