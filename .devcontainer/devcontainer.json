@@ -1,0 +1,46 @@
+{
+  "name": "Debian Node.js (LTS)",
+  "dockerFile": "Dockerfile",
+  "appPort": [8000, 9000],
+  "settings": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.snippetSuggestions": "top",
+    "editor.codeLens": true,
+    "editor.codeActionsOnSave": [
+      "source.organizeImports",
+      "source.fixAll.eslint"
+    ],
+    "eslint.alwaysShowStatus": true,
+    "eslint.packageManager": "yarn",
+    "eslint.enable": true,
+    "[mdx]": {
+      "editor.wordWrap": "wordWrapColumn",
+      "editor.wordWrapColumn": 80
+    },
+    "eslint.options": {
+      "configFile": ".eslintrc.js"
+    },
+    "terminal.integrated.shell.linux": "/bin/zsh"
+  },
+  "workspaceMount": "src=${localWorkspaceFolder},dst=/workspace,type=bind,consistency=cached",
+  "workspaceFolder": "/workspace",
+  "runArgs": [
+    "-u",
+    "node",
+    "-v",
+    "${env:USERPROFILE}${env:HOME}/.ssh:/home/node/.ssh-localhost:ro",
+    "-v",
+    "codepunkt.de-node_modules:/workspace/node_modules"
+  ],
+  "postCreateCommand": "sudo chown node:node node_modules && mkdir -p /home/node/.ssh && cp -r /home/node/.ssh-localhost/* /home/node/.ssh && chmod 700 /home/node/.ssh && chmod 600 /home/node/.ssh/* && yarn",
+  "extensions": [
+    "cssho.vscode-svgviewer",
+    "christian-kohler.npm-intellisense",
+    "christian-kohler.path-intellisense",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "jpoissonnier.vscode-styled-components",
+    "ms-azuretools.vscode-docker"
+  ]
+}
