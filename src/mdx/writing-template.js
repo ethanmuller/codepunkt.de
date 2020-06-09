@@ -1,11 +1,11 @@
-import { graphql } from "gatsby"
-import MDXRenderer from "gatsby-plugin-mdx/mdx-renderer"
-import React from "react"
-import { Layout } from "../components/layout"
-import { Seo } from "../components/seo"
+import { graphql } from 'gatsby'
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
+import React from 'react'
+import { Layout } from '../components/layout'
+import { Seo } from '../components/seo'
 
-const WritingTemplate = props => {
-  console.log("writing-template", props)
+const WritingTemplate = (props) => {
+  console.log('writing-template', props)
 
   const {
     data: {
@@ -17,7 +17,7 @@ const WritingTemplate = props => {
 
   return (
     <Layout>
-      <Seo title={`${subtitle ? `${subtitle} ` : ""}${title}`} />
+      <Seo title={`${subtitle ? `${subtitle} ` : ''}${title}`} />
       <header>
         <h2>{subtitle}</h2>
         <h1>{title}</h1>

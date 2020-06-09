@@ -1,7 +1,7 @@
-import { graphql, useStaticQuery } from "gatsby"
-import React from "react"
-import { Header } from "./header"
-import { Menu } from "./menu"
+import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
+import { Header } from './header'
+import { Menu } from './menu'
 
 export const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`

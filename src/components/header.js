@@ -1,7 +1,7 @@
-import { Link } from "gatsby"
-import React from "react"
+import { Link } from 'gatsby'
+import React from 'react'
 
-export const Header = ({ siteTitle = "" }) => (
+export const Header = ({ siteTitle = '' }) => (
   <header
     style={{
       background: `rebeccapurple`,

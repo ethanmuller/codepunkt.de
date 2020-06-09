@@ -1,5 +1,5 @@
-const path = require("path")
-const { createFilePath } = require("gatsby-source-filesystem")
+const path = require('path')
+const { createFilePath } = require('gatsby-source-filesystem')
 
 // settings
 const ARTICLES_PER_PAGE = 100
@@ -8,9 +8,9 @@ const ARTICLES_PER_PAGE = 100
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type === "Mdx") {
+  if (node.internal.type === 'Mdx') {
     const value = createFilePath({ node, getNode })
-    createNodeField({ node, name: "path", value: `/writing${value}` })
+    createNodeField({ node, name: 'path', value: `/writing${value}` })
   }
 }
 
@@ -23,9 +23,9 @@ exports.createPages = ({ graphql, actions }) => {
       allMdx(
         sort: { order: DESC, fields: [frontmatter___published] }
         ${
-          process.env.NODE_ENV === "production"
-            ? "filter: {frontmatter: {draft: {ne: true}}}"
-            : ""
+          process.env.NODE_ENV === 'production'
+            ? 'filter: {frontmatter: {draft: {ne: true}}}'
+            : ''
         }
       ) {
         edges {
@@ -48,7 +48,7 @@ exports.createPages = ({ graphql, actions }) => {
     posts.forEach(({ node }) => {
       createPage({
         path: node.fields.path,
-        component: path.resolve("./src/mdx/writing-template.js"),
+        component: path.resolve('./src/mdx/writing-template.js'),
         context: {
           id: node.id,
           permaLink: `https://codepunkt.de${node.fields.path}`,
@@ -62,7 +62,7 @@ exports.createPages = ({ graphql, actions }) => {
 
       createPage({
         path: currentPage === 1 ? `/writing/` : `/writing/${currentPage}/`,
-        component: path.resolve("./src/mdx/writing-index-template.js"),
+        component: path.resolve('./src/mdx/writing-index-template.js'),
         context: {
           pageInfo: {
             totalCount: numPages,
