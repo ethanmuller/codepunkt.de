@@ -9,18 +9,18 @@ const mdxComponents = {
       variants={{
         initial: {},
         animate: {},
-        exit: {},
+        exit: { transition: { duration: 0 } },
       }}
-      transition={{ staggerChildren: 1 }}
+      transition={{ staggerChildren: 0.2 }}
       {...props}
     />
   ),
   p: (props) => (
     <motion.p
       variants={{
-        initial: { opacity: 1 },
-        animate: { opacity: 0 },
-        exit: { opacity: 1 },
+        initial: { opacity: 0, y: 10 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 1, y: 0, transition: { duration: 0 } },
       }}
       {...props}
     />
@@ -45,7 +45,7 @@ export const Layout = (props) => {
             variants={{
               initial: { opacity: 0 },
               animate: { opacity: 1 },
-              exit: { opacity: 0 },
+              exit: { opacity: 0, transition: { duration: 0.3 } },
             }}
           >
             <MDXProvider components={mdxComponents}>{children}</MDXProvider>
