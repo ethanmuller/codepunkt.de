@@ -8,6 +8,8 @@ import {
 export const ColorModeContext = createContext()
 
 export const ColorModeProvider = ({ children }) => {
+  // TODO: how can i initialize this with a value from document on the client
+  // render? (it's obvious that i have to initialize with undefined for ssr)
   const [colorMode, rawSetColorMode] = useState(undefined)
 
   /**
@@ -20,7 +22,7 @@ export const ColorModeProvider = ({ children }) => {
    */
   useEffect(() => {
     rawSetColorMode(
-      window.document.documentElement.style.getPropertyValue(
+      document.documentElement.style.getPropertyValue(
         INITIAL_COLOR_MODE_CSS_VARIABLE
       )
     )

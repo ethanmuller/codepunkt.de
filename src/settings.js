@@ -1,5 +1,5 @@
 // how many msec staggering delay the mdx children have in their enter animation
-export const MDX_CONTENT_STAGGER_MSEC = 50
+export const MDX_CONTENT_STAGGER_MSEC = 100
 
 // block-level HTML tags that are converted from markdown and should stagger in
 export const MDX_CONTENT_STAGGER_ELEMENTS = [

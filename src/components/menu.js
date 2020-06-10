@@ -1,7 +1,8 @@
 import { Link } from 'gatsby'
-import React from 'react'
+import React, { memo } from 'react'
 
-export const Menu = () => {
+export const Menu = memo(() => {
+  console.log('menu')
   return (
     <ul>
       <li>
@@ -12,4 +13,4 @@ export const Menu = () => {
       </li>
     </ul>
   )
-}
+})
