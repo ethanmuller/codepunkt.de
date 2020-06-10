@@ -4,6 +4,7 @@ import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import { css } from 'linaria'
 import React from 'react'
 import { Seo } from '../components/seo'
+import { formatPostDate } from './util/format-post-date'
 
 const WritingTemplate = (props) => {
   console.log('writing-template', props)
@@ -29,13 +30,14 @@ const WritingTemplate = (props) => {
         <h2>{subtitle}</h2>
         <h1>{title}</h1>
         <p>{description}</p>
-        <div
-          className={css`
-            display: flex;
-          `}
-        >
-          <div>Article</div>
-          <div>{published}</div>
+        <div className={meta}>
+          <p>
+            <header>Type</header>Article
+          </p>
+          <p>
+            <header>Published</header>
+            {formatPostDate(published)}
+          </p>
         </div>
       </motion.header>
       <MDXRenderer>{props.data.mdx.body}</MDXRenderer>
@@ -64,5 +66,16 @@ export const query = graphql`
         siteUrl
       }
     }
+  }
+`
+
+const meta = css`
+  display: flex;
+  p {
+    margin: 0;
+    min-width: 25%;
+  }
+  header {
+    text-transform: uppercase;
   }
 `

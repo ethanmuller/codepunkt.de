@@ -1,9 +1,14 @@
 import { MDXProvider } from '@mdx-js/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import React from 'react'
+import {
+  MDX_CONTENT_STAGGER_ELEMENTS,
+  MDX_CONTENT_STAGGER_MSEC,
+} from '../settings'
 import { Menu } from './menu'
 
 const mdxComponents = {
+  // wrap mdx into a wrapper that staggers child animations
   wrapper: (props) => (
     <motion.div
       variants={{
@@ -11,20 +16,29 @@ const mdxComponents = {
         animate: {},
         exit: { transition: { duration: 0 } },
       }}
-      transition={{ staggerChildren: 0.2 }}
+      transition={{ staggerChildren: MDX_CONTENT_STAGGER_MSEC / 1000 }}
       {...props}
     />
   ),
-  p: (props) => (
-    <motion.p
-      variants={{
-        initial: { opacity: 0, y: 10 },
-        animate: { opacity: 1, y: 0 },
-        exit: { opacity: 1, y: 0, transition: { duration: 0 } },
-      }}
-      {...props}
-    />
-  ),
+  // replace all default block-level html elements with animated ones
+  ...MDX_CONTENT_STAGGER_ELEMENTS.reduce((acc, tag) => {
+    return {
+      ...acc,
+      [tag]: (props) => {
+        const Motion = motion[tag]
+        return (
+          <Motion
+            variants={{
+              initial: { opacity: 0, y: 10 },
+              animate: { opacity: 1, y: 0 },
+              exit: { opacity: 1, y: 0, transition: { duration: 0 } },
+            }}
+            {...props}
+          />
+        )
+      },
+    }
+  }, {}),
 }
 
 export const Layout = (props) => {
