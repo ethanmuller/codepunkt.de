@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { graphql } from 'gatsby'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import React from 'react'
@@ -17,11 +18,17 @@ const WritingTemplate = (props) => {
   return (
     <>
       <Seo title={`${subtitle ? `${subtitle} ` : ''}${title}`} />
-      <header>
+      <motion.header
+        variants={{
+          initial: { x: -100 },
+          animate: { x: 0 },
+          exit: { x: -100 },
+        }}
+      >
         <h2>{subtitle}</h2>
         <h1>{title}</h1>
         <p>{description}</p>
-      </header>
+      </motion.header>
       <MDXRenderer>{props.data.mdx.body}</MDXRenderer>
     </>
   )

@@ -1,10 +1,36 @@
+import { MDXProvider } from '@mdx-js/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import React from 'react'
 import { Menu } from './menu'
 
+const mdxComponents = {
+  wrapper: (props) => (
+    <motion.div
+      variants={{
+        initial: {},
+        animate: {},
+        exit: {},
+      }}
+      transition={{ staggerChildren: 1 }}
+      {...props}
+    />
+  ),
+  p: (props) => (
+    <motion.p
+      variants={{
+        initial: { opacity: 1 },
+        animate: { opacity: 0 },
+        exit: { opacity: 1 },
+      }}
+      {...props}
+    />
+  ),
+}
+
 export const Layout = (props) => {
   const { children, location } = props
   console.log('layout', props)
+
   return (
     <>
       <header>Codepunkt</header>
@@ -22,7 +48,7 @@ export const Layout = (props) => {
               exit: { opacity: 0 },
             }}
           >
-            {children}
+            <MDXProvider components={mdxComponents}>{children}</MDXProvider>
           </motion.div>
         </AnimatePresence>
       </main>
