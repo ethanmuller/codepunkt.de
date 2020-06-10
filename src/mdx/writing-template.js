@@ -32,10 +32,10 @@ const WritingTemplate = (props) => {
         <p>{description}</p>
         <div className={meta}>
           <p>
-            <header>Type</header>Article
+            <span>Type</span>Article
           </p>
           <p>
-            <header>Published</header>
+            <span>Published</span>
             {formatPostDate(published)}
           </p>
         </div>
@@ -75,7 +75,7 @@ const meta = css`
     margin: 0;
     min-width: 25%;
   }
-  header {
+  span {
     text-transform: uppercase;
   }
 `

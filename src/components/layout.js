@@ -5,7 +5,9 @@ import {
   MDX_CONTENT_STAGGER_ELEMENTS,
   MDX_CONTENT_STAGGER_MSEC,
 } from '../settings'
-import { Menu } from './menu'
+import { ColorModeProvider } from './color-mode-provider'
+import { globalStyle } from './global-style'
+import { Header } from './header'
 
 const mdxComponents = {
   // wrap mdx into a wrapper that staggers child animations
@@ -46,10 +48,9 @@ export const Layout = (props) => {
   console.log('layout', props)
 
   return (
-    <>
-      <header>Codepunkt</header>
-      <Menu />
-      <main>
+    <ColorModeProvider>
+      <Header />
+      <main className={globalStyle}>
         <AnimatePresence exitBeforeEnter initial={true}>
           <motion.div
             key={location.pathname}
@@ -66,6 +67,6 @@ export const Layout = (props) => {
           </motion.div>
         </AnimatePresence>
       </main>
-    </>
+    </ColorModeProvider>
   )
 }

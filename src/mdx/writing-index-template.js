@@ -26,7 +26,7 @@ const WritingIndexTemplate = (props) => {
             fields: { path },
           }) => {
             return (
-              <li>
+              <li key={path}>
                 <Link to={path}>
                   {subtitle && <div>{subtitle}</div>}
                   <div>{title}</div>
