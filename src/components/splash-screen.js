@@ -12,7 +12,7 @@ export const SplashScreen = () => {
       setAppState('default')
     }, 2500)
     return () => window.clearTimeout(timeout)
-  })
+  }, [setAppState])
 
   console.log('splash-screen', { appState })
   return (
@@ -39,7 +39,7 @@ const wrapper = css`
   overflow: hidden;
   height: calc(100vh - var(--indicator-height) - var(--frame-width) * 2);
   width: calc(100vw - var(--frame-width) * 2);
-  z-index: 1;
+  z-index: 4;
 `
 
 const background = css`

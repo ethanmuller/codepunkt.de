@@ -42,7 +42,7 @@ export const ColorModeProvider = ({ children }) => {
       localStorage.setItem(COLOR_MODE_STORAGE_KEY, newValue)
       document.documentElement.setAttribute('data-mode', newValue)
       Object.entries(COLORS).forEach(([name, colorByTheme]) => {
-        window.document.documentElement.style.setProperty(
+        document.documentElement.style.setProperty(
           `--color-${name}`,
           colorByTheme[newValue]
         )

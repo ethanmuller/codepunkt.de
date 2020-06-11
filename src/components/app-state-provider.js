@@ -7,8 +7,9 @@ export const AppStateProvider = ({ children }) => {
   const [appState, setAppState] = useState('splash')
 
   useEffect(() => {
+    document.documentElement.setAttribute('data-state', appState)
     Object.entries(STATE_CSS_VARIABLES).forEach(([name, valueByMode]) => {
-      window.document.documentElement.style.setProperty(
+      document.documentElement.style.setProperty(
         `--${name}`,
         valueByMode[appState]
       )

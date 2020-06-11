@@ -7,21 +7,21 @@ import { AppStateContext } from '../components/app-state-provider'
 import { Seo } from '../components/seo'
 import { formatPostDate } from './util/format-post-date'
 
+const sliderProps = {
+  variants: {
+    initial: { y: '100%' },
+    animate: { y: '0%' },
+    exit: { y: '0%', transition: { duration: 0 } },
+  },
+  transition: {
+    ease: [0.48, 1.01, 0.67, 1],
+    duration: 0.6,
+  },
+}
+
 const WritingTemplate = (props) => {
   const { appState } = useContext(AppStateContext)
   const animationDelay = appState === 'splash' ? 2.8 : 0
-
-  const sliderProps = {
-    variants: {
-      initial: { y: '100%' },
-      animate: { y: '0%' },
-      exit: { y: '0%', transition: { duration: 0 } },
-    },
-    transition: {
-      ease: [0.48, 1.01, 0.67, 1],
-      duration: 0.6,
-    },
-  }
 
   const {
     data: {

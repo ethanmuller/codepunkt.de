@@ -1,7 +1,7 @@
 import { MDXProvider } from '@mdx-js/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { cx } from 'linaria'
-import React, { useContext } from 'react'
+import React, { memo, useContext } from 'react'
 import {
   MDX_CONTENT_STAGGER_ELEMENTS,
   MDX_CONTENT_STAGGER_MSEC,
@@ -51,6 +51,14 @@ const createMdxComponents = (delayChildren = 0) => ({
   }, {}),
 })
 
+const MdxProviderWithoutUnnecessaryRerenders = memo(
+  ({ children, animationDelay }) => (
+    <MDXProvider components={createMdxComponents(animationDelay)}>
+      {children}
+    </MDXProvider>
+  )
+)
+
 export const Main = ({ children, className, location }) => {
   const { appState } = useContext(AppStateContext)
   const animationDelay = appState === 'splash' ? 2.8 : 0
@@ -67,15 +75,17 @@ export const Main = ({ children, className, location }) => {
           variants={{
             initial: { opacity: 1 },
             animate: { opacity: 1 },
-            exit: { opacity: 0, transition: { duration: 0.3 } },
+            exit: { opacity: 0, transition: { duration: 0 } },
           }}
           transition={{
             delayChildren: animationDelay,
           }}
         >
-          <MDXProvider components={createMdxComponents(animationDelay)}>
+          <MdxProviderWithoutUnnecessaryRerenders
+            animationDelay={animationDelay}
+          >
             {children}
-          </MDXProvider>
+          </MdxProviderWithoutUnnecessaryRerenders>
         </motion.div>
       </AnimatePresence>
     </main>
