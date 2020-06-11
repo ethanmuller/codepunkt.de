@@ -38,14 +38,15 @@ module.exports = {
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
     'gatsby-plugin-linaria',
+    // TODO: use codepunkt icon.
     {
       resolve: 'gatsby-plugin-manifest',
       options: {
-        name: 'gatsby-starter-default',
-        short_name: 'starter',
+        name: 'Codepunkt',
+        short_name: 'Codepunkt',
         start_url: '/',
-        background_color: '#663399',
-        theme_color: '#663399',
+        background_color: '#4483ea',
+        theme_color: '#4483ea',
         display: 'minimal-ui',
         icon: 'src/images/gatsby-icon.png', // This path is relative to the root of the site.
       },

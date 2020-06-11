@@ -1,5 +1,5 @@
 // how many msec staggering delay the mdx children have in their enter animation
-export const MDX_CONTENT_STAGGER_MSEC = 100
+export const MDX_CONTENT_STAGGER_MSEC = 25
 
 // block-level HTML tags that are converted from markdown and should stagger in
 export const MDX_CONTENT_STAGGER_ELEMENTS = [
@@ -79,6 +79,8 @@ export const RESPONSIVE_CSS_VARIABLES = {
   'h1-size': ['1.7rem', '2rem', '2.4rem', '2.6rem', '2.6rem', '2.6rem'],
   'h2-size': ['1.2rem', '1.3rem', '1.4rem', '1.6rem', '1.6rem', '1.6rem'],
   'h3-size': ['1.1rem', '1.2rem', '1.3rem', '1.5rem', '1.5rem', '1.5rem'],
+  // logo height
+  'logo-height': ['36px', '40px', '46px', '50px', '50px', '50px'],
 }
 
 /**

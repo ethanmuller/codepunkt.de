@@ -1,8 +1,8 @@
-import { graphql, useStaticQuery } from "gatsby"
-import React from "react"
-import { Helmet } from "react-helmet"
+import { graphql, useStaticQuery } from 'gatsby'
+import React from 'react'
+import { Helmet } from 'react-helmet'
 
-export const Seo = ({ description = "", lang = "en", meta = [], title }) => {
+export const Seo = ({ description = '', lang = 'en', meta = [], title }) => {
   const { site } = useStaticQuery(
     graphql`
       query {
@@ -17,6 +17,7 @@ export const Seo = ({ description = "", lang = "en", meta = [], title }) => {
     `
   )
 
+  // TODO: favicon with react-helmet?
   const metaDescription = description || site.siteMetadata.description
 
   return (

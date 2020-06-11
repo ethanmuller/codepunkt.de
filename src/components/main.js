@@ -1,5 +1,6 @@
 import { MDXProvider } from '@mdx-js/react'
 import { AnimatePresence, motion } from 'framer-motion'
+import { cx } from 'linaria'
 import React, { useContext } from 'react'
 import {
   MDX_CONTENT_STAGGER_ELEMENTS,
@@ -8,22 +9,26 @@ import {
 import { AppStateContext } from './app-state-provider'
 import { globalStyle } from './global-style'
 
+const WRITING_HEADER_ANIMATION_DURATION = 0.9
+
 const createMdxComponents = (delayChildren = 0) => ({
   // wrap mdx into a wrapper that staggers child animations
-  wrapper: (props) => (
-    <motion.div
-      variants={{
-        initial: {},
-        animate: {},
-        exit: { transition: { duration: 0 } },
-      }}
-      transition={{
-        staggerChildren: MDX_CONTENT_STAGGER_MSEC / 1000,
-        delayChildren,
-      }}
-      {...props}
-    />
-  ),
+  wrapper: (props) => {
+    return (
+      <motion.div
+        variants={{
+          initial: {},
+          animate: {},
+          exit: { transition: { duration: 0 } },
+        }}
+        transition={{
+          staggerChildren: MDX_CONTENT_STAGGER_MSEC / 1000,
+          delayChildren: delayChildren + WRITING_HEADER_ANIMATION_DURATION,
+        }}
+        {...props}
+      />
+    )
+  },
   // replace all default block-level html elements with animated ones
   ...MDX_CONTENT_STAGGER_ELEMENTS.reduce((acc, tag) => {
     return {
@@ -33,10 +38,11 @@ const createMdxComponents = (delayChildren = 0) => ({
         return (
           <Motion
             variants={{
-              initial: { opacity: 0, y: 10 },
+              initial: { opacity: 0, y: 8 },
               animate: { opacity: 1, y: 0 },
               exit: { opacity: 1, y: 0, transition: { duration: 0 } },
             }}
+            transition={{ ease: 'easeOut', duration: 0.5 }}
             {...props}
           />
         )
@@ -45,13 +51,13 @@ const createMdxComponents = (delayChildren = 0) => ({
   }, {}),
 })
 
-export const Main = ({ children, location }) => {
+export const Main = ({ children, className, location }) => {
   const { appState } = useContext(AppStateContext)
-  const animationDelay = appState === 'splash' ? 3 : 0
+  const animationDelay = appState === 'splash' ? 2.8 : 0
 
   console.log('main', { appState })
   return (
-    <main className={globalStyle}>
+    <main className={cx(className, globalStyle)}>
       <AnimatePresence exitBeforeEnter initial={true}>
         <motion.div
           key={location.pathname}
@@ -59,12 +65,11 @@ export const Main = ({ children, location }) => {
           animate="animate"
           exit="exit"
           variants={{
-            initial: { opacity: 0 },
+            initial: { opacity: 1 },
             animate: { opacity: 1 },
             exit: { opacity: 0, transition: { duration: 0.3 } },
           }}
           transition={{
-            delay: animationDelay,
             delayChildren: animationDelay,
           }}
         >

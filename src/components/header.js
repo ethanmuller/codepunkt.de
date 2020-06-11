@@ -1,5 +1,6 @@
 import { Link } from 'gatsby'
 import React from 'react'
+import { Logo } from './logo'
 import { Menu } from './menu'
 import { ModeToggle } from './mode-toggle'
 
@@ -8,7 +9,9 @@ export const Header = (props) => {
 
   return (
     <header>
-      <Link to="/">Codepunkt</Link>
+      <Link to="/">
+        <Logo />
+      </Link>
       <Menu />
       <ModeToggle />
     </header>
