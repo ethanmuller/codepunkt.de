@@ -2,10 +2,7 @@ import { MDXProvider } from '@mdx-js/react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { cx } from 'linaria'
 import React, { memo, useContext } from 'react'
-import {
-  MDX_CONTENT_STAGGER_ELEMENTS,
-  MDX_CONTENT_STAGGER_MSEC,
-} from '../settings'
+import { CONTENT_STAGGER_MSEC, MDX_CONTENT_STAGGER_ELEMENTS } from '../settings'
 import { AppStateContext } from './app-state-provider'
 import { globalStyle } from './global-style'
 
@@ -22,7 +19,7 @@ const createMdxComponents = (delayChildren = 0) => ({
           exit: { transition: { duration: 0 } },
         }}
         transition={{
-          staggerChildren: MDX_CONTENT_STAGGER_MSEC / 1000,
+          staggerChildren: CONTENT_STAGGER_MSEC / 1000,
           delayChildren: delayChildren + WRITING_HEADER_ANIMATION_DURATION,
         }}
         {...props}

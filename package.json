@@ -41,7 +41,10 @@
     "what-input": "^5.2.10"
   },
   "devDependencies": {
-    "prettier": "2.0.5"
+    "gatsby-remark-vscode": "^2.1.2",
+    "prettier": "2.0.5",
+    "slack-theme": "slack-theme/visual-studio-code",
+    "vscode-styled-components": "styled-components/vscode-styled-components"
   },
   "repository": {
     "type": "git",

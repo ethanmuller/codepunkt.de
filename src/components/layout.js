@@ -28,14 +28,13 @@ export const Layout = ({ children, location }) => {
 // TODO: min-height does not take header height into account
 const main = css`
   max-width: 1200px;
-  width: 90%;
+  width: 100%;
   margin: 0 auto;
-  padding-top: 120px;
-  min-height: calc(100vh - var(--indicator-height) - var(--frame-width) * 2);
-
-  @media only screen and (min-width: 668px) {
-    padding-top: 160px;
-  }
+  padding: 12vh var(--content-padding) 0;
+  min-height: calc(
+    100vh - var(--header-height) - var(--indicator-height) - var(--frame-width) *
+      2
+  );
 
   /* ie9-11 hack, see https://stackoverflow.com/a/20095764 */
   display: block;

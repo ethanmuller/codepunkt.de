@@ -19,7 +19,23 @@ export const globalStyle = css`
 
     /* A elements that don't have a class get default styles */
     a:not([class]) {
+      --link-color: #0058ff;
+      --link-line-color: #a1c1aa;
+      &:hover {
+        --link-color: var(--color-headline);
+        --link-line-color: #a1c1aa;
+      }
+      font-weight: 600;
       text-decoration-skip-ink: auto;
+      color: var(--link-color);
+      text-decoration: none;
+      text-shadow: -3px 1px var(--color-bg), 3px 1px var(--color-bg),
+        -2px 1px var(--color-bg), 2px 1px var(--color-bg),
+        -1px 1px var(--color-bg), 1px 1px var(--color-bg), 0 1px var(--color-bg);
+      background-image: linear-gradient(var(--color-logo), var(--color-logo));
+      background-position: 0% 28px;
+      background-repeat: no-repeat;
+      background-size: 100% 2px;
     }
 
     /* Make images easier to work with */

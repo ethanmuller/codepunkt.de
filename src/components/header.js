@@ -22,5 +22,6 @@ const header = css`
   justify-content: space-between;
   align-items: center;
   position: relative;
-  padding: var(--header-padding) var(--content-padding);
+  padding: 0 var(--content-padding);
+  height: var(--header-height);
 `

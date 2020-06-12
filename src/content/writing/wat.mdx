@@ -1,9 +1,8 @@
 ---
 draft: false
-title: how i built my portfolio
-subtitle: the small details of
+title: react event handling
 description: 'This post is an overview about the creation process of this site. It will explain the technologies used, the obstacles faced and the solutions found.'
-published: 2020-06-09
+published: 2020-06-12
 category: Article
 ---
 
@@ -14,27 +13,5 @@ This website is based on [Gatsby](https://gatsbyjs.org/). It's primary purpose i
 Blog content can be written in and provided by a variety of ways. It can be stored in and read from a content management system or be written to files. To keep things simple, i have decided to use a file-based approach that is built on top of [Markdown](https://www.markdownguide.org/basic-syntax/).
 
 A lot of my written content will be about technical topics and code, which is why i have decided to embed some code into this article to test the syntax highlighting features of my site.
-
-```jsx
-import { Link } from 'gatsby'
-import { css } from 'linaria'
-import React from 'react'
-import LogoSvg from './site-logo.svg'
-
-const logo = css`
-  width: 140px;
-  height: 45px;
-`
-
-const SiteLogo = () => {
-  return (
-    <Link to="/">
-      <LogoSvg role="img" className={logo} />
-    </Link>
-  )
-}
-
-export default SiteLogo
-```
 
 Also, there's more text here to see what it's like if there's more content below a paragraph of syntax highlighted code.

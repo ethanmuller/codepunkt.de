@@ -23,7 +23,22 @@ module.exports = {
         },
         remarkPlugins: [],
         rehypePlugins: [],
-        gatsbyRemarkPlugins: [],
+        gatsbyRemarkPlugins: [
+          // syntax highlighting
+          {
+            resolve: 'gatsby-remark-vscode',
+            options: {
+              theme: {
+                default: 'Slack Theme Ochin',
+                parentSelector: {
+                  'html[data-mode=dark]': 'Slack Theme Dark Mode',
+                },
+              },
+              injectStyles: true,
+              extensions: ['vscode-styled-components', 'slack-theme'],
+            },
+          },
+        ],
       },
     },
     'gatsby-plugin-react-helmet',

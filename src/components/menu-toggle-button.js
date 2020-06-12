@@ -1,13 +1,13 @@
-import { css } from 'linaria'
+import { css, cx } from 'linaria'
 import React, { useContext } from 'react'
 import { AppStateContext } from './app-state-provider'
 
-export const MenuToggle = () => {
+export const MenuToggleButton = ({ buttonClassName }) => {
   const { appState, setAppState } = useContext(AppStateContext)
 
   return (
     <button
-      className={button}
+      className={cx(buttonClassName, menuButton)}
       aria-label="Menu"
       aria-pressed={appState === 'menu'}
       onClick={() => {
@@ -22,17 +22,9 @@ export const MenuToggle = () => {
   )
 }
 
-const button = css`
-  background: transparent;
-  border: none;
-  padding: 0;
-  width: var(--button-size);
-  height: var(--button-size);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 3;
-  cursor: pointer;
+const menuButton = css`
+  margin-right: -8px;
+
   /* change bun size on hover and keyboard focus */
   html:not([data-state='menu']) &:hover div::before,
   html:not([data-state='menu']) &:hover div::after,
@@ -44,10 +36,6 @@ const button = css`
   &:hover span,
   html[data-whatinput='keyboard'] &:focus span {
     width: 16px;
-  }
-  @media screen and (min-width: 521px) {
-    width: 48px;
-    height: 48px;
   }
 `
 
