@@ -9,7 +9,7 @@ export const Header = (props) => {
 
   return (
     <header className={header}>
-      <Link to="/">
+      <Link to="/" className={link}>
         <Logo />
       </Link>
       <Menu />
@@ -17,6 +17,7 @@ export const Header = (props) => {
   )
 }
 
+const link = css``
 const header = css`
   display: flex;
   justify-content: space-between;

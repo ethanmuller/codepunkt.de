@@ -131,6 +131,10 @@ export const COLORS = {
     light: '#aecdb8',
     dark: '#343d4e',
   },
+  link: {
+    light: '#5239c2',
+    dark: '#cca43b',
+  },
 }
 
 /**
