@@ -63,7 +63,7 @@ export const Menu = () => {
               <motion.ol className={socialLinks}>
                 {SOCIAL_LINKS.map((link) => {
                   return (
-                    <motion.li>
+                    <motion.li key={link.url}>
                       <a href={link.url}>
                         <svg
                           className={socialIcon}

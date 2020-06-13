@@ -6,12 +6,12 @@
   "author": "Christoph Werner <christoph@codepunkt.de>",
   "license": "MIT",
   "scripts": {
-    "build": "gatsby build",
-    "develop": "gatsby develop",
+    "build": "GATSBY_TELEMETRY_DISABLED=1 gatsby build",
+    "develop": "GATSBY_TELEMETRY_DISABLED=1 gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "start": "npm run develop",
-    "serve": "gatsby serve",
-    "clean": "gatsby clean",
+    "serve": "GATSBY_TELEMETRY_DISABLED=1 gatsby serve",
+    "clean": "GATSBY_TELEMETRY_DISABLED=1 gatsby clean",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
