@@ -4,6 +4,8 @@ import React, { useContext, useEffect } from 'react'
 import { AppStateContext } from './app-state-provider'
 import { Logo } from './logo'
 
+const logoAnimationDuration = 1600
+
 export const SplashScreen = () => {
   const { appState, setAppState } = useContext(AppStateContext)
 
@@ -23,7 +25,7 @@ export const SplashScreen = () => {
             initial={{ y: 0 }}
             animate={{ y: 0 }}
             exit={{ y: '110%' }}
-            transition={{ duration: 0.7, ease: [0.28, 0.81, 0.44, 1] }}
+            transition={{ duration: 0.7, ease: [0.58, 0.01, 0.53, 1.01] }}
             className={background}
           >
             <Logo className={logo} idPrefix="site-initial" />
@@ -62,25 +64,26 @@ const logo = css`
   @keyframes fadeOut {
     0% {
       opacity: 1;
+      top: 50%;
     }
     100% {
       opacity: 0;
+      top: 45%;
     }
   }
   opacity: 1;
-  animation: fadeOut 0.7s ease-out 2s forwards;
+  animation: fadeOut 0.3s cubic-bezier(0.58, 0.01, 0.53, 1.01) 2500ms 1 forwards;
   @keyframes drawPath {
     0% {
       stroke-dashoffset: var(--path-length);
-    }
-    25% {
-      stroke-dashoffset: 0;
       fill: transparent;
     }
     50% {
       stroke-dashoffset: 0;
+      fill: transparent;
     }
     100% {
+      stroke-dashoffset: 0;
       fill: currentColor;
     }
   }
@@ -90,7 +93,7 @@ const logo = css`
     stroke: currentColor;
     stroke-width: 0.5;
     fill: transparent;
-    animation: drawPath 2000ms linear 0ms forwards;
+    animation: drawPath ${logoAnimationDuration}ms linear 0ms 1 forwards;
   }
   path:nth-of-type(1) {
     --path-length: 180;

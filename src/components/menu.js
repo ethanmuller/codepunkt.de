@@ -64,7 +64,7 @@ export const Menu = () => {
                 {SOCIAL_LINKS.map((link) => {
                   return (
                     <motion.li key={link.url}>
-                      <a href={link.url}>
+                      <a href={link.url} className={socialLink}>
                         <svg
                           className={socialIcon}
                           role="img"
@@ -166,19 +166,6 @@ const background = css`
   z-index: 2;
 `
 
-const backgroundVisible = css`
-  visibility: visible;
-  @keyframes scaleToFill {
-    0% {
-      transform: scale(0.01);
-    }
-    100% {
-      transform: scale(2.83);
-    }
-  }
-  animation: scaleToFill 0.7s cubic-bezier(0.28, 0.81, 0.44, 1) 0s forwards;
-`
-
 const nav = css`
   position: fixed;
   width: 100vw;
@@ -196,7 +183,10 @@ const navContent = css`
   height: calc(90vh - 120px);
 `
 
-const socialLinks = css``
+const socialLink = css``
+const socialLinks = css`
+  display: flex;
+`
 const socialIcon = css`
   width: 32px;
   height: 32px;

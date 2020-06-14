@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { graphql, Link } from 'gatsby'
+import { graphql, Link, navigate } from 'gatsby'
 import { css, cx } from 'linaria'
 import React, { useContext } from 'react'
 import { AppStateContext } from '../components/app-state-provider'
@@ -89,14 +89,15 @@ const WritingIndexTemplate = (props) => {
                 key={path}
                 variants={variants}
                 transition={transition}
+                onClick={() => navigate(path)}
               >
+                <div>{formatPostDate(published)}</div>
                 <Link to={path} className={articleLink}>
-                  <div>{formatPostDate(published)}</div>
                   <h2 className={articleHeadline}>
                     {subtitle ? `${subtitle} ${title}` : title}
                   </h2>
-                  <p className={articleTeaser}>{description}</p>
                 </Link>
+                <p className={articleTeaser}>{description}</p>
               </motion.li>
             )
           }
@@ -149,8 +150,31 @@ const articleListItem = css`
   margin-bottom: 2.4em;
 `
 const articleHeadline = css`
-  margin: 0;
-  padding-bottom: 0.4em;
+  margin: 0 0 0.4em 0;
+  display: inline-block;
+  color: var(--color-link);
+
+  text-decoration: none;
+  background-position: 0 1.3em;
+  background-position: 0 calc(1em + 4px);
+  background-image: linear-gradient(
+    to right,
+    var(--color-link) 100%,
+    var(--color-link) 0
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 1px;
+
+  transition: background-size 0.1s ease-out;
+  &:hover {
+    background-size: 0% 1px;
+  }
+
+  text-shadow: -4px 1px var(--color-bg), 4px 1px var(--color-bg),
+    -3px 1px var(--color-bg), 3px 1px var(--color-bg), -2px 1px var(--color-bg),
+    2px 1px var(--color-bg), -1px 1px var(--color-bg), 1px 1px var(--color-bg),
+    0 1px var(--color-bg);
+
   &:first-letter {
     text-transform: uppercase;
   }
