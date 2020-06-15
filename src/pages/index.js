@@ -3,33 +3,39 @@ import React from 'react'
 import { Avatar } from '../components/avatar'
 import { PatternBackground } from '../components/pattern-background'
 import { Seo } from '../components/seo'
+import { useOffset } from '../hooks/use-offset'
+import { BREAKPOINTS } from '../settings'
 
-const IndexPage = () => (
-  <div className={moveUp}>
-    <Seo title="Home" />
-    <section className={avatarSection}>
-      <div class={avatarStage}>
-        <PatternBackground x="0" y="0" />
-        <div className={avatarLayout}>
-          <Avatar />
+const IndexPage = () => {
+  const { x, y, ref, isDizzy } = useOffset()
+
+  return (
+    <div className={moveUp}>
+      <Seo title="Home" />
+      <section className={avatarSection}>
+        <div className={avatarStage}>
+          <PatternBackground x={x} y={y} />
+          <div className={avatarLayout}>
+            <Avatar centerRef={ref} x={x} y={y} isDizzy={isDizzy} />
+          </div>
         </div>
-      </div>
-    </section>
-    <section className={introSection}>
-      <div className={introContent}>
-        <h1 className={introWelcome}>
-          Hey, my name
-          <br />
-          is <b>Christoph</b>.
-        </h1>
-        <p className={introParagraph}>
-          I help teams deliver better products in less time by teaching web and
-          cloud technologies.
-        </p>
-      </div>
-    </section>
-  </div>
-)
+      </section>
+      <section className={introSection}>
+        <div className={introContent}>
+          <h1 className={introWelcome}>
+            Hey, my name
+            <br />
+            is <b>Christoph</b>.
+          </h1>
+          <p className={introParagraph}>
+            I help teams deliver better products in less time by teaching web
+            and cloud technologies.
+          </p>
+        </div>
+      </section>
+    </div>
+  )
+}
 
 export default IndexPage
 
@@ -43,10 +49,10 @@ const avatarSection = css`
   left: 0;
   top: 0;
   width: 100%;
-  height: 45vh;
+  height: 55vh;
   min-height: 250px;
   max-height: min(80vw, 500px);
-  @media screen and (min-width: 1001px) {
+  @media screen and (min-width: ${BREAKPOINTS[2]}px) {
     position: absolute;
     padding-top: 0;
   }
@@ -66,12 +72,12 @@ const avatarLayout = css`
   width: 100%;
   height: 100%;
   left: 50%;
-  @media screen and (min-width: 1001px) {
+  @media screen and (min-width: ${BREAKPOINTS[2]}px) {
     top: 0;
-    left: 72%;
+    left: 74%;
     max-width: 425px;
   }
-  @media screen and (min-width: 1201px) {
+  @media screen and (min-width: ${BREAKPOINTS[3]}px) {
     max-width: 500px;
   }
 `
@@ -81,8 +87,8 @@ const introSection = css`
   align-items: center;
   min-height: auto;
   margin-bottom: 50vh;
-  @media screen and (min-width: 1001px) {
-    padding-top: 2vh;
+  @media screen and (min-width: ${BREAKPOINTS[2]}px) {
+    padding-top: 7vh;
   }
 `
 
@@ -92,47 +98,53 @@ const introContent = css`
   min-height: auto;
   text-align: center;
   padding: 20px 0;
-  @media screen and (min-width: 1001px) {
+  @media screen and (min-width: ${BREAKPOINTS[2]}px) {
     min-height: 25vh;
     text-align: left;
     padding: 0;
-    max-width: 500px;
+    max-width: 470px;
   }
-  @media screen and (min-width: 1201px) {
-    max-width: 600px;
+  @media screen and (min-width: ${BREAKPOINTS[3]}px) {
+    /* 1280 and up */
+    max-width: 550px;
   }
 `
 
 const introWelcome = css`
   color: var(--color-text);
   font-weight: 500;
+  font-size: 2.4rem;
   line-height: 1.3em;
   font-family: montserrat;
   will-change: transform, opacity;
+  margin: 0 0 1rem 0;
+
+  @media screen and (min-width: ${BREAKPOINTS[2]}px) {
+    font-size: 2.8rem;
+  }
+  @media screen and (min-width: ${BREAKPOINTS[3]}px) {
+    font-size: 3.4rem;
+  }
 
   b {
     font-weight: 700;
     color: #318513;
-    transition: color 0.2s ease-out;
     [data-mode='dark'] & {
-      color: #835bb3;
+      color: #e7ceff;
     }
   }
 `
 
 const introParagraph = css`
   line-height: 1.65;
-  font-size: var(--h2-size);
-  margin-top: 30px;
-  max-width: auto;
-  padding: 0 5%;
+  font-size: 1.5rem;
   font-weight: 500;
   will-change: transform, opacity;
-  @media screen and (min-width: 1001px) {
-    max-width: 430px;
-    padding: 0;
-  }
-  @media screen and (min-width: 1201px) {
-    max-width: 530px;
+  margin: 0;
+  max-width: 70vw;
+  margin: 30px auto 0 auto;
+  @media screen and (min-width: ${BREAKPOINTS[2]}px) {
+    padding: 0
+    max-width: none;
   }
 `

@@ -25,9 +25,8 @@ export const Layout = ({ children, location }) => {
   )
 }
 
-// TODO: min-height does not take header height into account
 const main = css`
-  max-width: 1400px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto;
   padding: 12vh var(--content-padding) 0;

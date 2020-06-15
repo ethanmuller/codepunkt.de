@@ -1,5 +1,6 @@
 import { css } from 'linaria'
 import React from 'react'
+import { BREAKPOINTS } from '../settings'
 
 const getBackgroundImage = (darkMode) => {
   const fillColor = darkMode ? 'e7ceff' : '318513'
@@ -31,16 +32,16 @@ const pattern = css`
     background-image: url("${getBackgroundImage(true)}");
     opacity: 0.3;
   }
-  @media screen and (min-width: 521px) {
+  @media screen and (min-width: ${BREAKPOINTS[0]}px) {
     height: 200px;
   }
-  @media screen and (min-width: 1001px) {
+  @media screen and (min-width: ${BREAKPOINTS[2]}px) {
     height: 240px;
     left: 60%;
     max-width: 65vw;
     top: 18%;
   }
-  @media screen and (min-width: 1201px) {
+  @media screen and (min-width: ${BREAKPOINTS[3]}px) {
     max-width: 840px;
     left: 62%;
   }

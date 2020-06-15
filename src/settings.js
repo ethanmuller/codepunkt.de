@@ -89,7 +89,7 @@ export const RESPONSIVE_CSS_VARIABLES = {
 export const COLORS = {
   frame: {
     light: '#fff',
-    dark: '#252c3a',
+    dark: '#3e4156',
   },
   bg: {
     light: '#f0f7f2',
