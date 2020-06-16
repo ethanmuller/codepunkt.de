@@ -115,11 +115,16 @@ export const useDeviceOrientation = ({ decimals = 2, throttle = 100 } = {}) => {
     }
   }
 
-  const [orientation, setOrientation] = useState(
-    (window.screen.orientation
-      ? window.screen.orientation.angle
-      : window.orientation) ?? 0
-  )
+  const [orientation, setOrientation] = useState(0)
+
+  useEffect(() => {
+    setOrientation(
+      (window.screen.orientation
+        ? window.screen.orientation.angle
+        : window.orientation) ?? 0
+    )
+  }, [])
+
   const [wat, setWat] = useState(null)
   const [state, dispatch] = useReducer(reducer, {
     initial: null,

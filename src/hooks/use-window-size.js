@@ -3,15 +3,22 @@ import { useEffect, useState } from 'react'
 
 export const useWindowSize = ({ throttle = 100 } = {}) => {
   const [size, setSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight,
+    width: undefined,
+    height: undefined,
   })
 
-  const handleResize = () => {
-    setSize({ width: window.innerWidth, height: window.innerHeight })
-  }
+  useEffect(() => {
+    setSize({
+      width: window.innerWidth,
+      height: window.innerHeight,
+    })
+  }, [])
 
   useEffect(() => {
+    const handleResize = () => {
+      setSize({ width: window.innerWidth, height: window.innerHeight })
+    }
+
     const handleResizeThrottled = throttlefn(handleResize, throttle)
     window.addEventListener('resize', handleResizeThrottled)
     return () => {
