@@ -38,8 +38,14 @@ export const useOffset = () => {
       // miliseconds, use it!
       offset = {
         timestamp,
-        x: mx < cx ? -1 + mx / cx : (mx - cx) / (windowWidth - cx),
-        y: my < cy ? -1 + my / cy : (my - cy) / (windowHeight - cy),
+        x: clamp(mx < cx ? -1 + mx / cx : (mx - cx) / (windowWidth - cx), [
+          -1,
+          1,
+        ]),
+        y: clamp(my < cy ? -1 + my / cy : (my - cy) / (windowHeight - cy), [
+          -1,
+          1,
+        ]),
       }
     } else {
       // otherwise, use orientation
