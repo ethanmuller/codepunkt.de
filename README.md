@@ -9,6 +9,7 @@ https://jmswrnr.com/ (blogpost sliding animation)
 https://codersblock.com/ (codepen embeds, headline underlines)
 https://www.sarasoueidan.com/ (copy)
 https://medium.design/crafting-link-underlines-on-medium-7c03a9274f9 (link underlines)
+https://sallylait.com/ (menu)
 
 #### Z-Index Hierarchy
 

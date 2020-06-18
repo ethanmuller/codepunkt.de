@@ -1,36 +1,15 @@
+import { motion, useTransform, useViewportScroll } from 'framer-motion'
 import { css } from 'linaria'
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import React from 'react'
 
 export const ScrollIndicator = () => {
-  const ticking = useRef(false)
-  const [scrollPercent, setScrollPercent] = useState(0)
-
-  const handleScroll = useCallback(() => {
-    if (!ticking.current) {
-      window.requestAnimationFrame(() => {
-        const scrollHeight = document.documentElement.scrollHeight
-        const innerHeight = window.innerHeight
-        const scrollY = window.scrollY
-        const maxScrollY = Math.max(0, scrollHeight - innerHeight)
-        setScrollPercent(100 * (scrollY / maxScrollY))
-        ticking.current = false
-      })
-      ticking.current = true
-    }
-  }, [])
-
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll)
-    handleScroll()
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-    }
-  }, [handleScroll])
+  const { scrollYProgress } = useViewportScroll()
+  const width = useTransform(scrollYProgress, (value) => `${value * 100}%`)
 
   console.log('scroll-indicator')
   return (
     <div className={wrapper}>
-      <div className={indicator} style={{ width: `${scrollPercent}%` }} />
+      <motion.div className={indicator} style={{ width }} />
     </div>
   )
 }

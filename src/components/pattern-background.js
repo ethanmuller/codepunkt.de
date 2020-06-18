@@ -37,12 +37,12 @@ const pattern = css`
   }
   @media screen and (min-width: ${BREAKPOINTS[2]}px) {
     height: 240px;
-    left: 60%;
+    left: 64%;
     max-width: 65vw;
     top: 18%;
   }
   @media screen and (min-width: ${BREAKPOINTS[3]}px) {
-    max-width: 840px;
+    max-width: 828px;
     left: 62%;
   }
 `

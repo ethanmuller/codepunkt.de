@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { Link } from 'gatsby'
 import { css } from 'linaria'
 import React, { useCallback, useContext } from 'react'
-import { BREAKPOINTS, SOCIAL_LINKS } from '../settings'
+import { BREAKPOINTS, MENU_ENTRIES, SOCIAL_LINKS } from '../settings'
 import { AppStateContext } from './app-state-provider'
 import { MenuToggleButton } from './menu-toggle-button'
 import { ModeToggleButton } from './mode-toggle-button'
@@ -58,51 +58,45 @@ export const Menu = () => {
               animate: { opacity: 1 },
               exit: { opacity: 0, transition: { duration: 0 } },
             }}
+            transition={{ delay: 0.3 }}
           >
             <div className={navContent}>
+              <ol className={menuEntries}>
+                {MENU_ENTRIES.map(({ url, name, label }) => (
+                  <li>
+                    <Link
+                      className={menuEntry}
+                      to={url}
+                      onClick={closeMenu}
+                      activeClassName="active"
+                      partiallyActive={url === '/writing'}
+                    >
+                      <span className={menuEntryName}>{name}</span>
+                      <span className={menuEntryLabel}>{label}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ol>
               <motion.ol className={socialLinks}>
-                {SOCIAL_LINKS.map((link) => {
+                {SOCIAL_LINKS.map(({ url, name, path, color }) => {
                   return (
-                    <motion.li key={link.url}>
-                      <a href={link.url} className={socialLink}>
+                    <motion.li key={url}>
+                      <a href={url} className={socialLink}>
                         <svg
                           className={socialIcon}
                           role="img"
                           viewBox="0 0 512 512"
                           xmlns="http://www.w3.org/2000/svg"
-                          aria-labelledby={`social-icon-${link.name}`}
+                          aria-labelledby={`social-icon-${name}`}
                         >
-                          <title id={`social-icon-${link.name}`}>
-                            {link.name}
-                          </title>
-                          <path d={link.path} />
+                          <title id={`social-icon-${name}`}>{name}</title>
+                          <path d={path} fill={color} />
                         </svg>
                       </a>
                     </motion.li>
                   )
                 })}
               </motion.ol>
-
-              <ol className={menuEntries}>
-                <li>
-                  <Link to="/" onClick={closeMenu}>
-                    Home
-                  </Link>
-                </li>
-                <li>
-                  <Link to="/writing" onClick={closeMenu}>
-                    Writing
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/writing/how-i-built-my-portfolio/"
-                    onClick={closeMenu}
-                  >
-                    Article
-                  </Link>
-                </li>
-              </ol>
             </div>
           </motion.nav>
         )}
@@ -145,8 +139,6 @@ const menuButton = css`
   cursor: pointer;
 `
 
-const menuEntries = css``
-
 const background = css`
   width: 100vmax;
   height: 100vmax;
@@ -173,17 +165,26 @@ const nav = css`
   top: 0;
   left: 0;
   z-index: 2;
-  padding: calc(120px + 5vh) calc(var(--content-padding) + var(--frame-width))
-    5vh calc(var(--content-padding) + var(--frame-width));
+  --padding: calc(var(--frame-width) + var(--content-padding));
+  --header-offset: calc(
+    var(--indicator-height) + (var(--header-height) - var(--logo-height) / 2)
+  );
+  padding: var(--padding);
+  padding-top: calc(var(--padding) + var(--header-offset));
 `
 
 const navContent = css`
+  height: 100%;
   max-width: 1000px;
   margin: 0 auto;
-  height: calc(90vh - 120px);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 `
 
-const socialLink = css``
+const socialLink = css`
+  margin-right: 1rem;
+`
 const socialLinks = css`
   display: flex;
 `
@@ -191,4 +192,31 @@ const socialIcon = css`
   width: 32px;
   height: 32px;
   fill: currentColor;
+`
+
+const menuEntries = css`
+  margin-bottom: 3rem !important;
+`
+const menuEntry = css`
+  display: inline-block;
+  text-decoration: none;
+  margin-bottom: 1rem;
+  color: var(--color-text);
+  &:hover span:nth-child(2),
+  &:focus span:nth-child(2),
+  &.active span:nth-child(2) {
+    padding-left: 20px;
+  }
+  &.active {
+    color: var(--color-logo);
+  }
+`
+const menuEntryName = css`
+  display: block;
+  font-size: var(--h1-size);
+  font-weight: 600;
+`
+const menuEntryLabel = css`
+  display: block;
+  font-size: 1rem;
 `

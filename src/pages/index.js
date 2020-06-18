@@ -86,7 +86,7 @@ const introSection = css`
   display: flex;
   align-items: center;
   min-height: auto;
-  margin-bottom: 50vh;
+  margin-bottom: 5vh;
   @media screen and (min-width: ${BREAKPOINTS[2]}px) {
     padding-top: 7vh;
   }

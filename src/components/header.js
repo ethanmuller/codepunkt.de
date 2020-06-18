@@ -17,7 +17,10 @@ export const Header = (props) => {
   )
 }
 
-const link = css``
+const link = css`
+  z-index: 3;
+`
+
 const header = css`
   display: flex;
   justify-content: space-between;
